@@ -2,15 +2,17 @@
 using JMoviesApp.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace JMoviesApp.Migrations
 {
     [DbContext(typeof(JMoviesAppContext))]
-    partial class JMoviesAppContextModelSnapshot : ModelSnapshot
+    [Migration("20200524232655_AddMembershiptType")]
+    partial class AddMembershiptType
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -58,36 +60,6 @@ namespace JMoviesApp.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("MembershipTypes");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = (byte)1,
-                            DiscountRate = (byte)0,
-                            DurationInMonths = (byte)0,
-                            SignUpFee = (short)0
-                        },
-                        new
-                        {
-                            Id = (byte)2,
-                            DiscountRate = (byte)10,
-                            DurationInMonths = (byte)1,
-                            SignUpFee = (short)30
-                        },
-                        new
-                        {
-                            Id = (byte)3,
-                            DiscountRate = (byte)15,
-                            DurationInMonths = (byte)90,
-                            SignUpFee = (short)3
-                        },
-                        new
-                        {
-                            Id = (byte)4,
-                            DiscountRate = (byte)15,
-                            DurationInMonths = (byte)12,
-                            SignUpFee = (short)300
-                        });
                 });
 
             modelBuilder.Entity("JMoviesApp.Models.Movie", b =>

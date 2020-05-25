@@ -1,8 +1,15 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Migrations\20200524231557_PopulateMembershipTypes.cs" />
+    <Compile Remove="Migrations\20200524231557_PopulateMembershipTypes.Designer.cs" />
+    <Compile Remove="Migrations\20200524232741_PopulateMembershiptypeTable.cs" />
+    <Compile Remove="Migrations\20200524232741_PopulateMembershiptypeTable.Designer.cs" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.4">
