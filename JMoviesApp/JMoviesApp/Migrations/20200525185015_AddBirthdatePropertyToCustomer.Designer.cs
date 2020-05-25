@@ -3,15 +3,17 @@ using System;
 using JMoviesApp.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace JMoviesApp.Migrations
 {
     [DbContext(typeof(JMoviesAppContext))]
-    partial class JMoviesAppContextModelSnapshot : ModelSnapshot
+    [Migration("20200525185015_AddBirthdatePropertyToCustomer")]
+    partial class AddBirthdatePropertyToCustomer
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -67,58 +69,6 @@ namespace JMoviesApp.Migrations
                             IsSuscribedToNewsLetter = false,
                             MembershipTypeId = (byte)2,
                             Name = "Carlos"
-                        });
-                });
-
-            modelBuilder.Entity("JMoviesApp.Models.Genre", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
-                    b.Property<string>("Name")
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Genres");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "Comedy"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "Thriller"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Name = "Fiction"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Name = "Love"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Name = "Documental"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Name = "Action"
-                        },
-                        new
-                        {
-                            Id = 7,
-                            Name = "Documental"
                         });
                 });
 
@@ -181,26 +131,12 @@ namespace JMoviesApp.Migrations
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<DateTime>("DateAdded")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<int>("GenreId")
-                        .HasColumnType("integer");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("character varying(255)")
                         .HasMaxLength(255);
 
-                    b.Property<DateTime>("ReleaseDate")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<int>("Stock")
-                        .HasColumnType("integer");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("GenreId");
 
                     b.ToTable("Movies");
 
@@ -208,29 +144,17 @@ namespace JMoviesApp.Migrations
                         new
                         {
                             Id = 1,
-                            DateAdded = new DateTime(1994, 12, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            GenreId = 3,
-                            Name = "Star wars",
-                            ReleaseDate = new DateTime(1985, 12, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Stock = 0
+                            Name = "Star wars"
                         },
                         new
                         {
                             Id = 2,
-                            DateAdded = new DateTime(2019, 4, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            GenreId = 3,
-                            Name = "SpiderMan",
-                            ReleaseDate = new DateTime(2018, 12, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Stock = 0
+                            Name = "SpiderMan"
                         },
                         new
                         {
                             Id = 3,
-                            DateAdded = new DateTime(2020, 6, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            GenreId = 6,
-                            Name = "John Wick",
-                            ReleaseDate = new DateTime(2019, 12, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Stock = 0
+                            Name = "John Wick"
                         });
                 });
 
@@ -239,15 +163,6 @@ namespace JMoviesApp.Migrations
                     b.HasOne("JMoviesApp.Models.MembershipType", "MembershipType")
                         .WithMany()
                         .HasForeignKey("MembershipTypeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("JMoviesApp.Models.Movie", b =>
-                {
-                    b.HasOne("JMoviesApp.Models.Genre", "Genre")
-                        .WithMany()
-                        .HasForeignKey("GenreId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
